@@ -14509,6 +14509,7 @@ describe("ESLint", () => {
 
 				await eslint.lintFiles([badFile, goodFileCopy]);
 				let fileCache = fCache.createFromFile(cacheFilePath, {
+					useModifiedTime: false,
 					useCheckSum: true,
 				});
 				const entries = fileCache.normalizeEntries([
@@ -14526,6 +14527,7 @@ describe("ESLint", () => {
 				// this should result in a changed entry
 				shell.sed("-i", "abc", "xzy", goodFileCopy);
 				fileCache = fCache.createFromFile(cacheFilePath, {
+					useModifiedTime: false,
 					useCheckSum: true,
 				});
 				assert(
